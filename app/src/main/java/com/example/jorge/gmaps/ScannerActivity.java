@@ -3,7 +3,7 @@ package com.example.jorge.gmaps;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-
+import android.content.Intent;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -34,6 +34,10 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     @Override
     public void handleResult(Result rawResult) {
         Log.i("QRCode", rawResult.getText());
+        Intent databack = new Intent();
+        databack.putExtra("PREMIO",rawResult.getText());
+        setResult(RESULT_OK,databack);
+        finish();
         mScannerView.resumeCameraPreview(this);
     }
 }
