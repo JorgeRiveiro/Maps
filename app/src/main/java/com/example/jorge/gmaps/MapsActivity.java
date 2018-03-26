@@ -71,14 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mGoogleApiClient.disconnect();
         super.onStop();
     }
-
-    private boolean checkLocationPermission() {
-        String permission = "android.permission.ACCESS_FINE_LOCATION";
-        String permission2 = "android.permission.ACCESS_COARSE_LOCATION";
-        int res = getBaseContext().checkCallingOrSelfPermission(permission);
-        int res2 = getBaseContext().checkCallingOrSelfPermission(permission2);
-        return ((res == PackageManager.PERMISSION_GRANTED) && (res2 == PackageManager.PERMISSION_GRANTED));
-    }
+    
 
 
     /**
@@ -179,6 +172,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapClick(LatLng latLng) {
         float distanciaPremio = marcaUbicacion.distanceTo(mLastLocation);
+        Toast.makeText(this, "Distancia al premio = " + distanciaPremio + " m", Toast.LENGTH_SHORT).show();
         if(distanciaPremio <= 20){
             CircleOptions circuloMarca = new CircleOptions()
                     .center(MARCA)
